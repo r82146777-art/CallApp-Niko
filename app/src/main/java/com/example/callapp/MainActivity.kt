@@ -1,18 +1,36 @@
 package com.example.callapp
 
-// Full source is in Drive zip CallApp-Niko-v1.2-complete-source.zip
-// Placeholder to allow structure; replace with full file from the zip for a complete build.
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tv = TextView(this)
-        tv.text = "CallApp Niko v1.2\n\u0633\u0648\u0631\u0633 \u06a9\u0627\u0645\u0644 \u0631\u0627 \u0627\u0632 \u06af\u0648\u06af\u0644 \u062f\u0631\u0627\u06cc\u0648 \u062f\u0627\u0646\u0644\u0648\u062f \u06a9\u0646\u06cc\u062f"
-        tv.textSize = 18f
-        tv.setPadding(48, 48, 48, 48)
-        setContentView(tv)
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setBackgroundColor(Color.parseColor("#004D40"))
+            setPadding(48, 96, 48, 48)
+            gravity = Gravity.CENTER_HORIZONTAL
+        }
+        val title = TextView(this).apply {
+            text = "تماس و پیام \nCallApp Niko v1.2"
+            textSize = 26f
+            setTextColor(Color.WHITE)
+            gravity = Gravity.CENTER
+            setPadding(0, 0, 0, 32)
+        }
+        val info = TextView(this).apply {
+            text = "نسخه عمومی\nminSdk 24 (اندروید 7+)\n\nسورس کامل در گوگل درایو:\nCallApp-Niko-v1.2-Public"
+            textSize = 16f
+            setTextColor(Color.parseColor("#B2DFDB"))
+            gravity = Gravity.CENTER
+        }
+        root.addView(title)
+        root.addView(info)
+        setContentView(root)
     }
 }

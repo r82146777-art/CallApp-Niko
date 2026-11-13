@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -22,25 +22,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
-
-      - name: Download complete source zip
-        run: |
-          curl -sL -o /tmp/src.zip "https://drive.google.com/uc?export=download&id=14wNgmkeo_NwqqQ66fZlXaqNJtESZVFEq"
-          file /tmp/src.zip
-          unzip -l /tmp/src.zip | head -30
-
-      - name: Extract source over workspace
-        run: |
-          rm -rf app build.gradle.kts settings.gradle.kts gradle.properties
-          unzip -qo /tmp/src.zip -d /tmp/extract
-          # Project root is CallApp/
-          if [ -d /tmp/extract/CallApp ]; then
-            cp -a /tmp/extract/CallApp/. .
-          else
-            cp -a /tmp/extract/. .
-          fi
-          ls -la
-          ls app/src/main/java/com/example/callapp/ | head
 
       - name: Install Android SDK
         run: |
