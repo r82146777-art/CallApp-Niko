@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -23,12 +23,31 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Install Android SDK commandline tools
+      - name: Download complete source zip
+        run: |
+          curl -sL -o /tmp/src.zip "https://drive.google.com/uc?export=download&id=14wNgmkeo_NwqqQ66fZlXaqNJtESZVFEq"
+          file /tmp/src.zip
+          unzip -l /tmp/src.zip | head -30
+
+      - name: Extract source over workspace
+        run: |
+          rm -rf app build.gradle.kts settings.gradle.kts gradle.properties
+          unzip -qo /tmp/src.zip -d /tmp/extract
+          # Project root is CallApp/
+          if [ -d /tmp/extract/CallApp ]; then
+            cp -a /tmp/extract/CallApp/. .
+          else
+            cp -a /tmp/extract/. .
+          fi
+          ls -la
+          ls app/src/main/java/com/example/callapp/ | head
+
+      - name: Install Android SDK
         run: |
           mkdir -p $HOME/android-sdk/cmdline-tools
           cd /tmp
           curl -sL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o cmdtools.zip
-          unzip -q cmdtools.zip -d $HOME/android-sdk/cmdline-tools
+          unzip -qo cmdtools.zip -d $HOME/android-sdk/cmdline-tools
           mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
           echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
           echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
@@ -39,7 +58,7 @@ jobs:
           yes | sdkmanager --licenses >/dev/null || true
           sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
 
-      - name: Write local.properties
+      - name: local.properties
         run: echo "sdk.dir=$HOME/android-sdk" > local.properties
 
       - name: Assemble Debug APK
