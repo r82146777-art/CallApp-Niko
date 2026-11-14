@@ -2,11 +2,12 @@
 <resources>
     <string name="app_name">تماس و پیام</string>
     <string name="tab_contacts">مخاطبین</string>
-    <string name="tab_recents">اخیر</string>
+    <string name="tab_recents">گزارش تماس</string>
     <string name="tab_messages">پیام‌ها</string>
     <string name="tab_settings">تنظیمات</string>
     <string name="call">تماس</string>
     <string name="message">پیام</string>
-    <string name="search_hint">جستجو</string>
+    <string name="search_hint">جستجو در مخاطبین و شماره‌ها</string>
     <string name="settings_title">تنظیمات</string>
+    <string name="dial_pad">صفحه کلید شماره‌گیر</string>
 </resources>
