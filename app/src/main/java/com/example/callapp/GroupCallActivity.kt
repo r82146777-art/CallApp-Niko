@@ -3,6 +3,7 @@ package com.example.callapp
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -14,7 +15,7 @@ class GroupCallActivity : Activity() {
             orientation = LinearLayout.VERTICAL
             setPadding(48, 48, 48, 48)
             setBackgroundColor(Color.parseColor("#FAFAFA"))
-            layoutDirection = LAYOUT_DIRECTION_RTL
+            layoutDirection = View.LAYOUT_DIRECTION_RTL
         }
         root.addView(TextView(this).apply {
             text = "تماس گروهی"
@@ -23,7 +24,7 @@ class GroupCallActivity : Activity() {
             setPadding(0, 0, 0, 24)
         })
         root.addView(TextView(this).apply {
-            text = "از صفحه کلید اصلی می‌توانید تماس بگیرید."
+            text = "از صفحه کلید اصلی شماره را وارد کنید و تماس بگیرید."
             textSize = 16f
             setPadding(0, 0, 0, 32)
         })

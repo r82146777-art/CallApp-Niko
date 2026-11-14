@@ -3,6 +3,7 @@ package com.example.callapp
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -14,7 +15,7 @@ class MessagesActivity : Activity() {
             orientation = LinearLayout.VERTICAL
             setPadding(48, 48, 48, 48)
             setBackgroundColor(Color.parseColor("#FAFAFA"))
-            layoutDirection = LAYOUT_DIRECTION_RTL
+            layoutDirection = View.LAYOUT_DIRECTION_RTL
         }
         root.addView(TextView(this).apply {
             text = "پیام‌ها"
@@ -23,7 +24,7 @@ class MessagesActivity : Activity() {
             contentDescription = "صفحه پیام‌ها"
         })
         root.addView(TextView(this).apply {
-            text = "برای پیامک کامل، مجوز پیامک را از تنظیمات فعال کنید. این نسخه رابط دسترس‌پذیر تماس را دارد."
+            text = "از صفحه اصلی می‌توانید تماس بگیرید. برای پیامک کامل مجوز پیامک را بدهید."
             textSize = 16f
             setPadding(0, 0, 0, 32)
         })
