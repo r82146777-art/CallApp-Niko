@@ -23,14 +23,6 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Assemble accessible MainActivity from parts
-        run: |
-          mkdir -p app/src/main/java/com/example/callapp
-          if [ -f build-assets/MainActivity.kt ]; then
-            cp build-assets/MainActivity.kt app/src/main/java/com/example/callapp/MainActivity.kt
-          fi
-          ls -la app/src/main/java/com/example/callapp/
-
       - name: Install Android SDK
         run: |
           mkdir -p $HOME/android-sdk/cmdline-tools
